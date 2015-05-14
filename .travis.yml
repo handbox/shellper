@@ -1,0 +1,20 @@
+language: python
+
+cache:
+    apt
+    pip
+python:
+  - 2.7
+  - pypy
+env:
+    - pep8
+before_install:
+  - sudo apt-get install python-pip
+  - pip install pep8
+
+matrix:
+  exclude:
+    - python: 2.7
+      env: pep8
+
+script: pep8
