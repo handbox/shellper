@@ -17,6 +17,4 @@ matrix:
     - python: 2.7
       env: pep8
 
-before_script: cd shellper
-
 script: pep8
