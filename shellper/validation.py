@@ -13,7 +13,7 @@ SCHEMA = {
             },
             "time": {
                 "type": "string",
-                "minLength": 1
+                "minLength": 4
             },
             "when": {
                 "type": "string",
