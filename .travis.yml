@@ -10,7 +10,7 @@ env:
     - pep8-unit
 before_install:
   - sudo apt-get install python-pip
-  - pip install .
+  - pip install coveralls
 
 matrix:
   exclude:
@@ -20,7 +20,6 @@ matrix:
 script:
   - tox -e pep8
   - tox -e unit
-  - tox -e cover
 
 after_script:
-  coveralls --verbose
+  coveralls
