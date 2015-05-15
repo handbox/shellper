@@ -20,3 +20,5 @@ matrix:
 script:
   - tox -e pep8
   - tox -e unit
+after_script:
+  - coveralls --verbose
