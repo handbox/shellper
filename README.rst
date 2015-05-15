@@ -3,6 +3,8 @@ Shellper
 .. image:: https://travis-ci.org/handbox/shellper.svg?branch=master
     :target: https://travis-ci.org/handbox/shellper
 
+.. image:: https://coveralls.io/repos/handbox/shellper/badge.svg :target: https://coveralls.io/r/handbox/shellper
+
 StartUP of Handbox Inc.
 
 Branches
