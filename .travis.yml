@@ -7,14 +7,16 @@ python:
   - 2.7
   - pypy
 env:
-    - pep8
+    - pep8-unit
 before_install:
   - sudo apt-get install python-pip
-  - pip install pep8
+  - pip install .
 
 matrix:
   exclude:
     - python: 2.7
-      env: pep8
+      env: pep8-unit
 
-script: pep8
+script:
+  - tox -e pep8
+  - tox -e unit
