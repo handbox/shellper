@@ -39,6 +39,7 @@ htmlcov/
 .coverage
 .coverage.*
 .cache
+.testrepository/
 nosetests.xml
 coverage.xml
 *,cover
@@ -55,3 +56,6 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# IDE
+.idea/
