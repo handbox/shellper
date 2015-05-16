@@ -1,3 +1,5 @@
+import sys
+
 import argparse
 import yaml
 
@@ -16,8 +18,12 @@ def main():
         config = yaml.load(yaml_file)
 
     validation.validate(config)
+    del sys.argv[-1]
 
     google = base.Base()
+
+    google.get_event_list()
+
     links = []
     for event in config:
         links.append(google.search_query(event["summary"]))
