@@ -1,12 +1,12 @@
-import argparse
-from pygoogle import pygoogle
-import os
-import oauth2client
-from oauth2client import client
-from oauth2client import tools
-from apiclient.discovery import build
 from datetime import datetime
+import os
+
+from apiclient.discovery import build
+import argparse
 from httplib2 import Http
+import oauth2client
+from pygoogle import pygoogle
+
 
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 CLIENT_SECRET_FILE = 'shellper/etc/client_secret.json'
@@ -24,7 +24,8 @@ class Base(object):
         return request.get_urls()
 
     def authentication(self):
-        flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
+        flags = argparse.ArgumentParser(
+            parents=[oauth2client.tools.argparser]).parse_args()
         home_dir = os.path.expanduser('~')
         credential_dir = os.path.join(home_dir, '.credentials')
         if not os.path.exists(credential_dir):
@@ -35,12 +36,13 @@ class Base(object):
         store = oauth2client.file.Storage(credential_path)
         credentials = store.get()
         if not credentials or credentials.invalid:
-            flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
+            flow = oauth2client.client.flow_from_clientsecrets(
+                CLIENT_SECRET_FILE, SCOPES)
             flow.user_agent = APPLICATION_NAME
             if flags:
-                credentials = tools.run_flow(flow, store, flags)
+                credentials = oauth2client.tools.run_flow(flow, store, flags)
             else:
-                credentials = tools.run(flow, store)
+                credentials = oauth2client.tools.run(flow, store)
             print 'Storing credentials to ' + credential_path
         return credentials
 
