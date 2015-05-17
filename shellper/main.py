@@ -1,6 +1,7 @@
+import sys
+
 import argparse
 import yaml
-import sys
 
 import shellper.base as base
 import shellper.validation as validation
