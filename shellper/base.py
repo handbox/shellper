@@ -9,7 +9,7 @@ from pygoogle import pygoogle
 
 
 SCOPES = 'https://www.googleapis.com/auth/calendar'
-CLIENT_SECRET_FILE = 'shellper/etc/client_secret.json'
+CLIENT_SECRET_FILE = 'etc/client_secret.json'
 APPLICATION_NAME = 'Shellper'
 
 
