@@ -8,9 +8,10 @@ import oauth2client
 from pygoogle import pygoogle
 
 
-SCOPES = 'https://www.googleapis.com/auth/calendar'
-CLIENT_SECRET_FILE = 'etc/client_secret.json'
 APPLICATION_NAME = 'Shellper'
+CLIENT_SECRET_FILE = 'etc/client_secret.json'
+CREDENTIALS_PATH = 'etc/calendar-api.json'
+SCOPES = 'https://www.googleapis.com/auth/calendar'
 
 
 class Base(object):
@@ -30,10 +31,8 @@ class Base(object):
         credential_dir = os.path.join(home_dir, '.credentials')
         if not os.path.exists(credential_dir):
             os.makedirs(credential_dir)
-        credential_path = os.path.join(credential_dir,
-                                       'calendar-api.json')
 
-        store = oauth2client.file.Storage(credential_path)
+        store = oauth2client.file.Storage(CREDENTIALS_PATH)
         credentials = store.get()
         if not credentials or credentials.invalid:
             flow = oauth2client.client.flow_from_clientsecrets(
@@ -43,7 +42,7 @@ class Base(object):
                 credentials = oauth2client.tools.run_flow(flow, store, flags)
             else:
                 credentials = oauth2client.tools.run(flow, store)
-            print 'Storing credentials to ' + credential_path
+            print 'Storing credentials to ' + CREDENTIALS_PATH
         return credentials
 
     def get_event_list(self):
