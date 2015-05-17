@@ -9,7 +9,7 @@ class TestValidation(testtools.TestCase):
         json = [
             {
                 'time': '18:00',
-                'when': 'yesterday',
+                'date': 'yesterday',
                 'summary': 'How clone git repository?'
             }
         ]
@@ -19,7 +19,7 @@ class TestValidation(testtools.TestCase):
         json = [
             {
                 'foo_time': '18:00',
-                'foo_when': 'yesterday',
+                'foo_date': 'yesterday',
                 'foo_summary': 'How clone git repository?'
             }
         ]

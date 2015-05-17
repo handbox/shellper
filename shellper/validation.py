@@ -15,7 +15,7 @@ SCHEMA = {
                 "type": "string",
                 "minLength": 4
             },
-            "when": {
+            "date": {
                 "type": "string",
                 "minLength": 1
             },

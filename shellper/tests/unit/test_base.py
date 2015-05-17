@@ -1,5 +1,3 @@
-import sys
-
 import mock
 import testtools
 
@@ -15,16 +13,34 @@ class TestBase(testtools.TestCase):
     def test_search_query(self):
         self.base_for_test.search_query([{"summary": "Test query"}])
 
+    @mock.patch('shellper.base.Base._init_service',
+                return_value={})
     @mock.patch('argparse.ArgumentParser.parse_args',
                 return_value={})
-    def test_authentication(self, mock_argparse):
-        del sys.argv[-1]
+    def test_authentication(self, mock_argparse, mock_init_service):
         self.base_for_test.authentication()
 
-    @mock.patch('googleapiclient.http.HttpRequest.execute', returt_value=None)
+    @mock.patch('shellper.base.Base.authentication',
+                return_value=base_test.FakeClass())
+    @mock.patch('googleapiclient.http.HttpRequest.execute', return_value={})
+    @mock.patch('apiclient.discovery.build',
+                return_value=base_test.FakeClass())
+    def test_get_event_list(self, mock_init_service, mock_googleapi,
+                            mock_auth):
+        self.base_for_test.get_event_list()
+
     @mock.patch('shellper.base.Base.authentication',
                 return_value=base_test.FakeClass())
     @mock.patch('apiclient.discovery.build',
                 return_value=base_test.FakeClass())
-    def test_get_event_list(self, mock_build, mock_auth, mock_googleapi):
-        self.base_for_test.get_event_list()
+    @mock.patch('googleapiclient.http.HttpRequest.execute', return_value={
+        'id': 'id'})
+    def test_create_event(self, mock_execute, mock_build, mock_auth):
+        self.base_for_test.service = self.base_for_test._init_service()
+        json = {
+            'time': '18:00',
+            'date': '03.05',
+            'summary': 'How clone git repository?',
+            'description': 'http://host1 http://host2'
+        }
+        self.base_for_test.create_event(json)

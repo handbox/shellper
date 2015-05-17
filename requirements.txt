@@ -9,3 +9,4 @@ testtools>=0.9.36,!=1.2.0
 PyYAML
 pygoogle-simple
 google-api-python-client
+rfc3339>=0.0.dev0

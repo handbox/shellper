@@ -19,14 +19,15 @@ def main():
 
     validation.validate(config)
     del sys.argv[-1]
-
     google = base.Base()
 
     google.get_event_list()
-
-    links = []
     for event in config:
-        links.append(google.search_query(event["summary"]))
+        event["description"] = []
+        event["description"].append(google.search_query(event["summary"]))
+    for event in config:
+        id = google.create_event(event)
+        google.delete_event(id)
 
 if __name__ == "__main__":
     main()
