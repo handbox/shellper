@@ -13,7 +13,7 @@ class TestCreateListDeleteEvent(object):
         self.calendar = base.Base()
         self.create_event(config)
         self.delete_event()
-        
+
     def create_event(self, config):
         run.add_links(self.calendar, config)
         for event in config:
