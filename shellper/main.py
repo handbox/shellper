@@ -7,6 +7,12 @@ import shellper.base as base
 import shellper.validation as validation
 
 
+def add_links(google, config):
+    for event in config:
+        event["description"] = []
+        event["description"].append(google.search_query(event["summary"]))
+
+
 def main():
     # parse args
     parser = argparse.ArgumentParser(description="Parser")
@@ -22,12 +28,9 @@ def main():
     google = base.Base()
 
     google.get_event_list()
-    for event in config:
-        event["description"] = []
-        event["description"].append(google.search_query(event["summary"]))
+    add_links(google, config)
     for event in config:
         id = google.create_event(event)
-        google.delete_event(id)
 
 if __name__ == "__main__":
     main()

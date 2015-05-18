@@ -75,6 +75,8 @@ class Base(object):
             print start, event['summary']
 
     def create_event(self, config):
+        if self.service is None:
+            self.service = self._init_service()
         datelist = config["date"].split(".")
         datelist = map(int, datelist)
         timelist = config["time"].split(":")
