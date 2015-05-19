@@ -30,7 +30,7 @@ def main():
     google.get_event_list()
     add_links(google, config)
     for event in config:
-        id = google.create_event(event)
+        google.create_event(event)
 
 if __name__ == "__main__":
     main()
