@@ -7,6 +7,7 @@ Shellper
     :target: https://coveralls.io/r/handbox/shellper
 
 **StartUP of Handbox Inc.**
+
 This is new project from the young guys! This application will help you
 organize your day, remind you of upcoming events, help your to cook dinner or
 small lunch and much more! If you need to do some tasks (from school or
@@ -15,6 +16,7 @@ the latest information and remind you about this! Very simple! Full
 integration with Google Calendar.
 
 **Functionality**
+
 For now added basic functionality:
     * Integration with Google Calendar
     * Adding tasks
@@ -23,7 +25,8 @@ For now added basic functionality:
     * Searching information based on the title of tasks
 
 To run app enter in your terminal:
-'tox -e run etc/template.yaml'
+
+tox -e run etc/template.yaml
 
 Branches
 ========
