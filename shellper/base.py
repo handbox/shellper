@@ -5,7 +5,7 @@ from apiclient.discovery import build
 import argparse
 from httplib2 import Http
 import oauth2client
-from pygoogle import pygoogle
+import pygoogle
 import rfc3339
 
 
@@ -33,7 +33,7 @@ class Base(object):
                                                  minute=timelist[1]))
 
     def search_query(self, query):
-        request = pygoogle(query)
+        request = pygoogle.pygoogle(query)
         request.pages = self.page_number
         return request.get_urls()
 
