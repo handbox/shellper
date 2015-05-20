@@ -3,7 +3,7 @@ import os
 
 from apiclient.discovery import build
 import argparse
-from httplib2 import Http
+import httplib2
 import oauth2client
 import pygoogle
 import rfc3339
@@ -23,7 +23,7 @@ class Base(object):
     def _init_service(self):
         credentials = self.authentication()
         return build('calendar', 'v3',
-                     http=credentials.authorize(Http()))
+                     http=credentials.authorize(httplib2.Http()))
 
     def convert_to_rfc3339(self, datelist, timelist, inc=0):
         return rfc3339.rfc3339(datetime.datetime(datelist[2],
