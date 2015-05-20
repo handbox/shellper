@@ -8,21 +8,21 @@ Shellper
 
 **StartUP of Handbox Inc.**
 
-    This is new project from the young guys! This application will help you
-    organize your day, remind you of upcoming events, help your to cook dinner or
-    small lunch and much more! If you need to do some tasks (from school or
-    university, maybe working) just run our app and create event! It will pick up
-    the latest information and remind you about this! Very simple! Full
-    integration with Google Calendar.
+This is new project from the young guys! This application will help you
+organize your day, remind you of upcoming events, help your to cook dinner or
+small lunch and much more! If you need to do some tasks (from school or
+university, maybe working) just run our app and create event! It will pick up
+the latest information and remind you about this! Very simple! Full
+integration with Google Calendar.
 
 **Functionality**
 
-    For now added basic functionality:
-        * Integration with Google Calendar
-        * Adding tasks
-        * Deleting tasks
-        * Showing tasks
-        * Searching information based on the title of tasks
+For now added basic functionality:
+    * Integration with Google Calendar
+    * Adding tasks
+    * Deleting tasks
+    * Showing tasks
+    * Searching information based on the title of tasks
 
 To run app enter in your terminal:
 
