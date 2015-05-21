@@ -6,7 +6,7 @@ Shellper
 .. image:: https://coveralls.io/repos/handbox/shellper/badge.svg
     :target: https://coveralls.io/r/handbox/shellper
 
-**StartUP of Handbox Inc.**
+**StartUP of Handbox Team.**
 
 This is new project from the young guys! This application will help you
 organize your day, remind you of upcoming events, help your to cook dinner or
@@ -17,7 +17,7 @@ integration with Google Calendar.
 
 **Functionality**
 
-For now added basic functionality:
+For now we added basic functionality:
     * Integration with Google Calendar
     * Adding tasks
     * Deleting tasks
