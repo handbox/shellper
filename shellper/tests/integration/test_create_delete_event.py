@@ -1,14 +1,14 @@
+import sys
+
 import shellper.base as base
 import shellper.main as run
 
 
 class TestCreateListDeleteEvent(object):
     def __init__(self):
-        config = [{
-            'time': '22:00',
-            'date': '18.05.2015',
-            'summary': 'How clone git repository?'
-        }]
+        yaml_file = run.parsing_args()
+        config = run.open_file(yaml_file)
+        del sys.argv[-1]
         self.ids_of_events = []
         self.calendar = base.Base()
         self.create_event(config)
