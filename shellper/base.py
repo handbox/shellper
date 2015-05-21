@@ -69,7 +69,7 @@ class Base(object):
         events = eventsResult.get('items', [])
 
         if not events:
-            print 'No upcoming events found.'
+            return 'No upcoming events found.'
         for event in events:
             start = event['start'].get('dateTime')
             return start, event['summary']
