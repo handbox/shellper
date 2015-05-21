@@ -72,7 +72,7 @@ class Base(object):
             print 'No upcoming events found.'
         for event in events:
             start = event['start'].get('dateTime')
-            print start, event['summary']
+            return start, event['summary']
 
     def create_event(self, config):
         if self.service is None:
