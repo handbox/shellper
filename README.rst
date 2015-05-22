@@ -24,6 +24,10 @@ For now we added basic functionality:
     * Showing tasks
     * Searching information based on the title of tasks
 
+In this version authentication works with our test account. If you want that
+application works with your account, please delete file etc/calendar-api.json.
+In file etc/template.yaml is a list of events, modify it for your events.
+
 To run app enter in your terminal:
 
     tox -e run etc/template.yaml
