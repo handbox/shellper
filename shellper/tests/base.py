@@ -7,3 +7,15 @@ class FakeClass(object):
 
     def build(self):
         return None
+
+    def events(self):
+        return FakeClass()
+
+    def list(self, **kwargs):
+        return FakeClass()
+
+    def execute(self):
+        return {'items': [], 'id': None}
+
+    def insert(self, **kwargs):
+        return FakeClass()

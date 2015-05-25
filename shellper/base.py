@@ -3,9 +3,9 @@ import os
 
 from apiclient.discovery import build
 import argparse
-from httplib2 import Http
+import httplib2
 import oauth2client
-from pygoogle import pygoogle
+import pygoogle
 import rfc3339
 
 
@@ -23,7 +23,7 @@ class Base(object):
     def _init_service(self):
         credentials = self.authentication()
         return build('calendar', 'v3',
-                     http=credentials.authorize(Http()))
+                     http=credentials.authorize(httplib2.Http()))
 
     def convert_to_rfc3339(self, datelist, timelist, inc=0):
         return rfc3339.rfc3339(datetime.datetime(datelist[2],
@@ -33,7 +33,7 @@ class Base(object):
                                                  minute=timelist[1]))
 
     def search_query(self, query):
-        request = pygoogle(query)
+        request = pygoogle.pygoogle(query)
         request.pages = self.page_number
         return request.get_urls()
 
@@ -69,10 +69,10 @@ class Base(object):
         events = eventsResult.get('items', [])
 
         if not events:
-            print 'No upcoming events found.'
+            return 'No upcoming events found.'
         for event in events:
             start = event['start'].get('dateTime')
-            print start, event['summary']
+            return start, event['summary']
 
     def create_event(self, config):
         if self.service is None:
