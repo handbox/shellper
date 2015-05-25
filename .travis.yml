@@ -1,0 +1,27 @@
+language: python
+
+cache:
+    apt
+    pip
+python:
+  - 2.7
+  - pypy
+env:
+    - pep8-unit
+before_install:
+  - sudo apt-get install python-pip
+  - pip install coveralls
+
+matrix:
+  exclude:
+    - python: 2.7
+      env: pep8-unit
+
+script:
+  - tox -e integration etc/template.yaml
+  - tox -e pep8
+  - tox -e unit
+  - tox -e cover
+
+after_script:
+  coveralls
