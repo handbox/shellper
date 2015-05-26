@@ -6,6 +6,7 @@ import argparse
 import httplib2
 import oauth2client
 import pygoogle
+import re
 import rfc3339
 
 
@@ -77,9 +78,9 @@ class Base(object):
     def create_event(self, config):
         if self.service is None:
             self.service = self._init_service()
-        datelist = config["date"].split(".")
+        datelist = re.split(r'[./-]', config["date"])
         datelist = map(int, datelist)
-        timelist = config["time"].split(":")
+        timelist = re.split(r'[.:-]', config["time"])
         timelist = map(int, timelist)
         try:
             datelist[2]
