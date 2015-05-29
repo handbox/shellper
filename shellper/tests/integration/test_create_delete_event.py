@@ -6,14 +6,19 @@ import shellper.main as run
 
 class TestCreateListDeleteEvent(object):
     def __init__(self):
+        self.ids_of_events = []
+        self.calendar = base.Base()
+
+    def scenario(self):
+        self.create_event(self.prepare_config())
+        self.list_events()
+        self.delete_event()
+
+    def prepare_config(self):
         yaml_file = run.parsing_args()
         config = run.open_file(yaml_file)
         del sys.argv[-1]
-        self.ids_of_events = []
-        self.calendar = base.Base()
-        self.create_event(config)
-        self.list_events()
-        self.delete_event()
+        return config
 
     def create_event(self, config):
         run.add_links(self.calendar, config)
