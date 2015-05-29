@@ -2,7 +2,7 @@ import mock
 import testtools
 
 import shellper.base as base
-import shellper.tests.fake_class as base_test
+import shellper.tests.base as base_test
 
 
 class TestBase(testtools.TestCase):
