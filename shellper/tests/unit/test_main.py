@@ -3,7 +3,7 @@ import testtools
 
 import shellper.base as main_base
 import shellper.main as main_function
-import shellper.tests.unit.base as base
+import shellper.tests.unit.fake_class as base
 
 
 class TestMain(testtools.TestCase):
