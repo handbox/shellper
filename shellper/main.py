@@ -33,7 +33,7 @@ def main():
     del sys.argv[-1]
     google = base.Base()
 
-    google.get_event_list()
+    print google.get_event_list()
     add_links(google, config)
     for event in config:
         google.create_event(event)
