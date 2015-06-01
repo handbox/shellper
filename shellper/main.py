@@ -10,7 +10,10 @@ import shellper.validation as validation
 def add_links(google, config):
     for event in config:
         event["description"] = []
-        event["description"].append(google.search_query(event["summary"]))
+        if google.search_query(event["summary"]):
+            event["description"].append(google.search_query(event["summary"]))
+        else:
+            event["description"].append(["Results_not_found"])
 
 
 def parsing_args():
