@@ -41,8 +41,8 @@ class Base(object):
     def authentication(self):
         flags = argparse.ArgumentParser(
             parents=[oauth2client.tools.argparser]).parse_args()
-        home_dir = os.path.expanduser('~')
-        credential_dir = os.path.join(home_dir, '.credentials')
+        home_dir = os.path.expanduser('shellper')
+        credential_dir = os.path.join(home_dir, 'etc/.credentials')
         if not os.path.exists(credential_dir):
             os.makedirs(credential_dir)
 
