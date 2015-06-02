@@ -17,8 +17,17 @@ class TestMain(testtools.TestCase):
                   mock_query, mock_create):
         main_function.main()
 
+    @mock.patch('shellper.base.Base.search_query', return_value=True)
+    def test_add_links_with_results(self, mock_query):
+        config = [{
+            'time': '22:00',
+            'date': '18.05.2015',
+            'summary': 'How clone git repository?'
+        }]
+        main_function.add_links(main_base.Base(), config)
+
     @mock.patch('shellper.base.Base.search_query', return_value=None)
-    def test_add_links(self, mock_query):
+    def test_add_links_without_results(self, mock_query):
         config = [{
             'time': '22:00',
             'date': '18.05.2015',
