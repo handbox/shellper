@@ -1,3 +1,4 @@
+import httplib2
 import mock
 import testtools
 
@@ -10,10 +11,13 @@ class TestBase(testtools.TestCase):
         super(TestBase, self).setUp()
         self.base_for_test = base.Base()
 
-    @mock.patch('argparse.ArgumentParser.parse_args',
-                return_value={})
-    def test_init_service(self, mock_argparse):
-        self.base_for_test._init_service()
+    @mock.patch('argparse.ArgumentParser.parse_args', return_value={})
+    def test_init_service(self, mock_argparse,):
+        try:
+            self.base_for_test._init_service()
+        except httplib2.ServerNotFoundError:
+            with testtools.ExpectedException(httplib2.ServerNotFoundError):
+                self.base_for_test._init_service()
 
     @mock.patch('pygoogle.pygoogle')
     def test_search_query(self, mock_pygoogle):
