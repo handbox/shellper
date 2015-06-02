@@ -41,4 +41,5 @@ class TestCreateDeleteEvent(testtools.TestCase):
 
     @mock.patch('shellper.base.Base.delete_event')
     def test_delete_event(self, mock_delete_event):
+        self.test_cld.ids_of_events = [1, 2, 3]
         self.test_cld.delete_event()
