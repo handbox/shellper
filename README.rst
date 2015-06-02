@@ -47,6 +47,8 @@ Useful links for employee
 +============+============================================+
 | TaskTracker| https://trello.com/b/OgDFIlYd/shellper-team|
 +------------+--------------------------------------------+
+| BugTracker | https://launchpad.net/shellper             |
++------------+--------------------------------------------+
 | Etherpad   | https://shellhelper.etherpad.mozilla.org   |
 +------------+--------------------------------------------+
 | ShareDir   | https://goo.gl/TwfFtf                      |
