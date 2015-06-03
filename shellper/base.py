@@ -16,6 +16,7 @@ CREDENTIALS_PATH = 'etc/calendar-api.json'
 SCOPES = 'https://www.googleapis.com/auth/calendar'
 
 
+# Base class for working of app
 class Base(object):
     def __init__(self):
         self.page_number = 1
@@ -33,11 +34,14 @@ class Base(object):
                                                  hour=timelist[0]+inc,
                                                  minute=timelist[1]))
 
+    # Search query in google.com
     def search_query(self, query):
         request = pygoogle.pygoogle(query)
         request.pages = self.page_number
         return request.get_urls()
 
+    # Check of available access to user calendar,
+    # if access unavailable - request access
     def authentication(self):
         flags = argparse.ArgumentParser(
             parents=[oauth2client.tools.argparser]).parse_args()
@@ -59,6 +63,7 @@ class Base(object):
             print 'Storing credentials to ' + CREDENTIALS_PATH
         return credentials
 
+    # List of events from available account
     def get_event_list(self):
         self.service = self._init_service()
         now = datetime.datetime.utcnow().isoformat() + 'Z'
@@ -74,6 +79,11 @@ class Base(object):
         for event in events:
             start = event['start'].get('dateTime')
             return start, event['summary']
+
+    # Create event from file etc/template.yaml
+    # Parse date format 00-00-0000, 00/00/0000, 00.00.0000; time formats 00.00,
+    # 00-00, 00:00
+    # TODO(esikachev): fix comment when implement UI
 
     def create_event(self, config):
         if self.service is None:
@@ -102,6 +112,7 @@ class Base(object):
                                                      body=event).execute()
         return created_event['id']
 
+    # Delete event on id
     def delete_event(self, eventId):
         self.service.events().delete(calendarId='primary',
                                      eventId=eventId).execute()
