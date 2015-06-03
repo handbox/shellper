@@ -45,13 +45,11 @@ Useful links for employee
 +------------+--------------------------------------------+
 |   Tools    |                    URL                     |
 +============+============================================+
-| TaskTracker| https://trello.com/b/OgDFIlYd/shellper-team|
+| TaskTracker| http://shellhelper.myjetbrains.com/        |
 +------------+--------------------------------------------+
 | BugTracker | https://launchpad.net/shellper             |
 +------------+--------------------------------------------+
 | Etherpad   | https://shellhelper.etherpad.mozilla.org   |
 +------------+--------------------------------------------+
 | ShareDir   | https://goo.gl/TwfFtf                      |
-+------------+--------------------------------------------+
-| Chat       | https://gitter.im/handbox                  |
 +------------+--------------------------------------------+

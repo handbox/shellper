@@ -7,6 +7,7 @@ import shellper.base as base
 import shellper.validation as validation
 
 
+# Add results to event description
 def add_links(google, config):
     for event in config:
         event["description"] = []
@@ -16,6 +17,7 @@ def add_links(google, config):
             event["description"].append(["Results_not_found"])
 
 
+# Parsing of arguments from tox
 def parsing_args():
     parser = argparse.ArgumentParser(description="Parser")
     parser.add_argument('argument', help="Path to template file",
@@ -24,6 +26,7 @@ def parsing_args():
     return args.argument
 
 
+# Open yaml file and conver to json
 def open_file(argument):
     with open(argument, 'r') as yaml_file:
         return yaml.load(yaml_file)
