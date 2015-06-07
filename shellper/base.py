@@ -74,11 +74,13 @@ class Base(object):
             orderBy='startTime').execute()
         events = eventsResult.get('items', [])
 
-        if not events:
-            return 'No upcoming events found.'
+        event_list = []
         for event in events:
             start = event['start'].get('dateTime')
-            return start, event['summary']
+            new_event = (start, event['summary'])
+            event_list.append(new_event)
+
+        return event_list
 
     # Create event from file etc/template.yaml
     # Parse date format 00-00-0000, 00/00/0000, 00.00.0000; time formats 00.00,
