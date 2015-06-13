@@ -10,7 +10,12 @@ class TestCreateListDeleteEvent(object):
         self.calendar = base.Base()
 
     def scenario(self):
-        self.create_event(self.prepare_config())
+        self.config = self.prepare_config()
+        self.create_event(self.config)
+        self.list_events()
+        self.delete_event()
+        self.ids_of_events = []
+        self.quick_create(self.config)
         self.list_events()
         self.delete_event()
 
@@ -38,3 +43,12 @@ class TestCreateListDeleteEvent(object):
             self.calendar.delete_event(id_of_event)
             count += 1
         print 'Successfully deleted ' + str(count) + ' events!'
+
+    def quick_create(self, config):
+        run.add_links(self.calendar, config)
+        count = 0
+        for event in config:
+            self.ids_of_events.append(
+                self.calendar.quick_create_event(event))
+            count += 1
+        print 'Successfully created ' + str(count) + ' events!'

@@ -114,6 +114,13 @@ class Base(object):
                                                      body=event).execute()
         return created_event['id']
 
+    def quick_create_event(self, config):
+        self.service = self._init_service()
+        created_event = self.service.events().quickAdd(
+            calendarId='primary', text=config["summary"]).execute()
+
+        return created_event['id']
+
     # Delete event on id
     def delete_event(self, eventId):
         self.service.events().delete(calendarId='primary',

@@ -32,3 +32,6 @@ class FakeClass(object):
 
     def delete(self, **kwargs):
         return FakeClass(out=self.out)
+
+    def quickAdd(self, **kwargs):
+        return FakeClass(out=self.out)

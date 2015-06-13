@@ -10,6 +10,12 @@ class TestBase(testtools.TestCase):
     def setUp(self):
         super(TestBase, self).setUp()
         self.base_for_test = base.Base()
+        self.config = {
+            'time': '18:00',
+            'date': '03.05',
+            'summary': 'How clone git repository tomorrow?',
+            'description': 'http://host1 http://host2'
+        }
 
     @mock.patch('argparse.ArgumentParser.parse_args', return_value={})
     def test_init_service(self, mock_argparse,):
@@ -75,16 +81,16 @@ class TestBase(testtools.TestCase):
         'id': 'id'})
     def test_create_event(self, mock_execute, mock_build, mock_auth,
                           mock_service, mock__init_service):
-        json = {
-            'time': '18:00',
-            'date': '03.05',
-            'summary': 'How clone git repository?',
-            'description': 'http://host1 http://host2'
-        }
-        self.base_for_test.create_event(json)
+        self.base_for_test.create_event(self.config)
 
     @mock.patch('shellper.base.Base._init_service',
                 return_value=base_test.FakeClass())
     def test_delete_event(self, mock_service):
         self.base_for_test.service = self.base_for_test._init_service()
         self.base_for_test.delete_event('some_id')
+
+    @mock.patch('shellper.base.Base._init_service',
+                return_value=base_test.FakeClass())
+    def test_quick_create(self, mock_init):
+        self.base_for_test.service = self.base_for_test._init_service()
+        self.base_for_test.quick_create_event(self.config)
