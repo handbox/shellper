@@ -32,7 +32,7 @@ class TestCreateDeleteEvent(testtools.TestCase):
         self.test_cld.prepare_config()
 
     @mock.patch('shellper.base.Base.create_event')
-    @mock.patch('shellper.main.add_links')
+    @mock.patch('shellper.base.Base.add_links')
     def test_create_event(self, mock_links, mock_create_event):
         test_integration.TestCreateListDeleteEvent().create_event(self.config)
 
@@ -48,6 +48,6 @@ class TestCreateDeleteEvent(testtools.TestCase):
     @mock.patch('shellper.base.Base._init_service',
                 return_value=fake.FakeClass())
     @mock.patch('argparse.ArgumentParser.parse_args')
-    @mock.patch('shellper.main.add_links')
+    @mock.patch('shellper.base.Base.add_links')
     def test_quick_create_event(self, mock_addlinks, mock_argparse, mock_init):
         test_integration.TestCreateListDeleteEvent().quick_create(self.config)

@@ -7,16 +7,6 @@ import shellper.base as base
 import shellper.validation as validation
 
 
-# Add results to event description
-def add_links(google, config):
-    for event in config:
-        event["description"] = []
-        if google.search_query(event["summary"]):
-            event["description"].append(google.search_query(event["summary"]))
-        else:
-            event["description"].append(["Results_not_found"])
-
-
 # Parsing of arguments from tox
 def parsing_args():
     parser = argparse.ArgumentParser(description="Parser")
@@ -37,6 +27,7 @@ def main():
     config = open_file(argument)
     validation.validate(config)
     del sys.argv[-1]
+
     google = base.Base()
 
     event_list = google.get_event_list()
@@ -45,7 +36,8 @@ def main():
             print event
     else:
         print 'No upcomings events found'
-    add_links(google, config)
+    google.add_links(config)
+
     for event in config:
         google.create_event(event)
 

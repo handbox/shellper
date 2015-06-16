@@ -26,7 +26,6 @@ class TestCreateListDeleteEvent(object):
         return config
 
     def create_event(self, config):
-        run.add_links(self.calendar, config)
         count = 0
         for event in config:
             self.ids_of_events.append(
@@ -45,7 +44,6 @@ class TestCreateListDeleteEvent(object):
         print 'Successfully deleted ' + str(count) + ' events!'
 
     def quick_create(self, config):
-        run.add_links(self.calendar, config)
         count = 0
         for event in config:
             self.ids_of_events.append(

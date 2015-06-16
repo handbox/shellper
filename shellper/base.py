@@ -34,6 +34,15 @@ class Base(object):
                                                  hour=timelist[0]+inc,
                                                  minute=timelist[1]))
 
+    # Add results to event description
+    def add_links(self, event):
+        event["description"] = []
+        if self.search_query(event["summary"]):
+            event["description"].append(self.search_query(
+                event["summary"]))
+        else:
+            event["description"].append(["Results_not_found"])
+
     # Search query in google.com
     def search_query(self, query):
         request = pygoogle.pygoogle(query)
@@ -90,6 +99,7 @@ class Base(object):
     def create_event(self, config):
         if self.service is None:
             self.service = self._init_service()
+        self.add_links(config)
         datelist = re.split(r'[./-]', config["date"])
         datelist = map(int, datelist)
         timelist = re.split(r'[.:-]', config["time"])

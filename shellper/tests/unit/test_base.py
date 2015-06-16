@@ -94,3 +94,21 @@ class TestBase(testtools.TestCase):
     def test_quick_create(self, mock_init):
         self.base_for_test.service = self.base_for_test._init_service()
         self.base_for_test.quick_create_event(self.config)
+
+    @mock.patch('shellper.base.Base.search_query', return_value=True)
+    def test_add_links_with_results(self, mock_query):
+        config = {
+            'time': '22:00',
+            'date': '18.05.2015',
+            'summary': 'How clone git repository?'
+        }
+        self.base_for_test.add_links(config)
+
+    @mock.patch('shellper.base.Base.search_query', return_value=None)
+    def test_add_links_without_results(self, mock_query):
+        config = {
+            'time': '22:00',
+            'date': '18.05.2015',
+            'summary': 'How clone git repository?'
+        }
+        self.base_for_test.add_links(config)
