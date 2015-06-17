@@ -39,7 +39,12 @@ def main():
     del sys.argv[-1]
     google = base.Base()
 
-    print google.get_event_list()
+    event_list = google.get_event_list()
+    if event_list:
+        for event in event_list:
+            print event
+    else:
+        print 'No upcomings events found'
     add_links(google, config)
     for event in config:
         google.create_event(event)
