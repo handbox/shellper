@@ -18,9 +18,10 @@ matrix:
       env: pep8-unit
 
 script:
-  - tox -e integration etc/template.yaml
   - tox -e pep8
   - tox -e unit
+  - tox -e unit_integration
+  - tox -e integration etc/template.yaml
   - tox -e cover
 
 after_script:
