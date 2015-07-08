@@ -69,13 +69,13 @@ class Base(object):
                 credentials = oauth2client.tools.run_flow(flow, store, flags)
             else:
                 credentials = oauth2client.tools.run(flow, store)
-            print 'Storing credentials to ' + CREDENTIALS_PATH
+            print 'Storing credentials to %s' % CREDENTIALS_PATH
         return credentials
 
     # List of events from available account
     def get_event_list(self):
         self.service = self._init_service()
-        now = datetime.datetime.utcnow().isoformat() + 'Z'
+        now = '%sZ' % datetime.datetime.utcnow().isoformat()
         print 'Getting the upcoming 10 events'
         eventsResult = self.service.events().list(
             calendarId='primary',

@@ -31,7 +31,7 @@ class TestCreateListDeleteEvent(object):
             self.ids_of_events.append(
                 self.calendar.create_event(event))
             count += 1
-        print 'Successfully created ' + str(count) + ' events!'
+        print 'Successfully created %s events!' % str(count)
 
     def list_events(self):
         print self.calendar.get_event_list()
@@ -41,7 +41,7 @@ class TestCreateListDeleteEvent(object):
         for id_of_event in self.ids_of_events:
             self.calendar.delete_event(id_of_event)
             count += 1
-        print 'Successfully deleted ' + str(count) + ' events!'
+        print 'Successfully created %s events!' % str(count)
 
     def quick_create(self, config):
         count = 0
@@ -49,4 +49,4 @@ class TestCreateListDeleteEvent(object):
             self.ids_of_events.append(
                 self.calendar.quick_create_event(event))
             count += 1
-        print 'Successfully created ' + str(count) + ' events!'
+        print 'Successfully created %s events!' % str(count)
