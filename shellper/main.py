@@ -36,7 +36,6 @@ def main():
             print event
     else:
         print 'No upcomings events found'
-    google.add_links(config)
 
     for event in config:
         google.create_event(event)
