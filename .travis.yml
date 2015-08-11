@@ -19,7 +19,7 @@ matrix:
 
 script:
   - tox -e pep8
-  - tox -e unit
+  - tox -e py27
   - tox -e unit_integration
   - tox -e integration etc/template.yaml
   - tox -e cover
