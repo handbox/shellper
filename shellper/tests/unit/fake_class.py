@@ -35,3 +35,12 @@ class FakeClass(object):
 
     def quickAdd(self, **kwargs):
         return FakeClass(out=self.out)
+
+    def users(self, **kwargs):
+        return FakeClass(out=self.out)
+
+    def messages(self, **kwargs):
+        return FakeClass(out=self.out)
+
+    def send(self, **kwargs):
+        return FakeClass(out=self.out)
