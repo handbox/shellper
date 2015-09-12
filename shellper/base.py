@@ -148,7 +148,7 @@ class Base(object):
         }
 
         created_event = service.events().insert(calendarId='primary',
-                                                     body=event).execute()
+                                                body=event).execute()
         return created_event['id']
 
     def quick_create_event(self, config):
