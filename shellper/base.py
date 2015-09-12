@@ -54,7 +54,7 @@ class Base(object):
         request.pages = self.page_number
         return request.get_urls()
 
-    # Check of available access to user calendar,
+    # Check of available access to user,
     # if access unavailable - request access
     def authentication_in(self, service):
         flags = argparse.ArgumentParser(
@@ -102,10 +102,10 @@ class Base(object):
 
     # List of events from available account
     def get_event_list(self):
-        self.service = self._init_service()
+        service = self._init_service()
         now = '%sZ' % datetime.datetime.utcnow().isoformat()
         print 'Getting the upcoming 10 events'
-        eventsResult = self.service.events().list(
+        eventsResult = service.events().list(
             calendarId='primary',
             maxResults=10, singleEvents=True, timeMin=now,
             orderBy='startTime').execute()
@@ -125,8 +125,7 @@ class Base(object):
     # TODO(esikachev): fix comment when implement UI
 
     def create_event(self, config):
-        if self.service is None:
-            self.service = self._init_service()
+        service = self._init_service()
         self.add_links(config)
         datelist = re.split(r'[./-]', config["date"])
         datelist = map(int, datelist)
@@ -148,18 +147,19 @@ class Base(object):
                                                                       "\n")
         }
 
-        created_event = self.service.events().insert(calendarId='primary',
+        created_event = service.events().insert(calendarId='primary',
                                                      body=event).execute()
         return created_event['id']
 
     def quick_create_event(self, config):
-        self.service = self._init_service()
-        created_event = self.service.events().quickAdd(
+        service = self._init_service()
+        created_event = service.events().quickAdd(
             calendarId='primary', text=config["summary"]).execute()
 
         return created_event['id']
 
     # Delete event on id
     def delete_event(self, eventId):
-        self.service.events().delete(calendarId='primary',
-                                     eventId=eventId).execute()
+        service = self._init_service()
+        service.events().delete(calendarId='primary',
+                                eventId=eventId).execute()

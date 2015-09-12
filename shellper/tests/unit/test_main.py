@@ -19,8 +19,11 @@ class TestMain(testtools.TestCase):
     def test_main_without_events(self, mock_validate, mock_argparse,
                                  mock_getlist, mock_query, mock_create,
                                  mock_links, mock_mail):
+        conf = cfg.CONF.remind_method
+        cfg.CONF.remind_method = 'mail'
         main_function.main()
         cfg.CONF.remind_method = 'calendar'
         main_function.main()
         cfg.CONF.remind_method = ''
         main_function.main()
+        cfg.CONF.remind_method = conf
