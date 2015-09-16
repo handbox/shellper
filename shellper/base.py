@@ -4,7 +4,7 @@ import os
 from apiclient.discovery import build
 import argparse
 import base64
-from email.mime.text import MIMEText
+from email.mime import text
 import httplib2
 import oauth2client
 import pygoogle
@@ -86,7 +86,7 @@ class Base(object):
         self.add_links(config)
         links = config.get('description')[0]
         body = '\n'.join([str(link) for link in links])
-        message = MIMEText(body)
+        message = text.MIMEText(body)
         message['to'] = to
         message['from'] = 'handbox.inc@gmail.com'
         message['subject'] = config.get('summary')
