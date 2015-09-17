@@ -26,7 +26,11 @@ For now we added basic functionality:
 
 In this version authentication works with our test account. If you want that
 application works with your account, please delete files etc/calendar-api.json and
-etc/gmail-api.conf.
+etc/gmail-api.json.
+In config file etc/shellper.conf in section [DEFAULT] need set value
+`account` (your gmail address - if you want use Google Calendar, email - if you
+want get email with links), `remind_method` (calendar, mail), also you can not set this
+vriable, then you get mail with links and get event in calendar.
 File etc/template.yaml is a list of events, modify it for your events.\
 In your Google Calendar in description of event will be links to information
 about your event.
