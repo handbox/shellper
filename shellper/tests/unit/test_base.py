@@ -14,7 +14,7 @@ class TestBase(testtools.TestCase):
             'time': '18:00',
             'date': '03.05',
             'summary': 'How clone git repository tomorrow?',
-            'description': 'http://host1 http://host2'
+            'description': [['http://host1', 'http://host2']]
         }
 
     @mock.patch('argparse.ArgumentParser.parse_args', return_value={})
@@ -29,7 +29,6 @@ class TestBase(testtools.TestCase):
     def test_search_query(self, mock_pygoogle):
         self.base_for_test.search_query([{"summary": "Test query"}])
 
-    @mock.patch('oauth2client.tools.run')
     @mock.patch('oauth2client.file.Storage')
     @mock.patch('os.makedirs')
     @mock.patch('os.path.exists', return_value=False)
@@ -38,9 +37,8 @@ class TestBase(testtools.TestCase):
     @mock.patch('argparse.ArgumentParser.parse_args',
                 return_value={})
     def test_authentication_exist(self, mock_argparse, mock_init_service,
-                                  mock_exist, mock_mkdirs, mock_storage,
-                                  mock_run):
-        self.base_for_test.authentication()
+                                  mock_exist, mock_mkdirs, mock_storage):
+        self.base_for_test.authentication_in('gmail')
 
     @mock.patch('oauth2client.client.flow_from_clientsecrets')
     @mock.patch('oauth2client.tools.run_flow', return_value=None)
@@ -55,7 +53,7 @@ class TestBase(testtools.TestCase):
                                       mock_exist, mock_mkdirs, mock_storage,
                                       mock_runflow, mock_client):
         base.CLIENT_SECRET_FILE = 'etc/client_secret1.json'
-        self.base_for_test.authentication()
+        self.base_for_test.authentication_in('gmail')
 
     @mock.patch('shellper.base.Base._init_service',
                 return_value=base_test.FakeClass())
@@ -73,7 +71,7 @@ class TestBase(testtools.TestCase):
     @mock.patch('shellper.base.Base._init_service',
                 return_value=base_test.FakeClass())
     @mock.patch('shellper.base.Base._init_service', return_value={})
-    @mock.patch('shellper.base.Base.authentication',
+    @mock.patch('shellper.base.Base.authentication_in',
                 return_value=base_test.FakeClass())
     @mock.patch('apiclient.discovery.build',
                 return_value=base_test.FakeClass())
@@ -97,18 +95,18 @@ class TestBase(testtools.TestCase):
 
     @mock.patch('shellper.base.Base.search_query', return_value=True)
     def test_add_links_with_results(self, mock_query):
-        config = {
-            'time': '22:00',
-            'date': '18.05.2015',
-            'summary': 'How clone git repository?'
-        }
-        self.base_for_test.add_links(config)
+        self.base_for_test.add_links(self.config)
 
     @mock.patch('shellper.base.Base.search_query', return_value=None)
     def test_add_links_without_results(self, mock_query):
-        config = {
-            'time': '22:00',
-            'date': '18.05.2015',
-            'summary': 'How clone git repository?'
-        }
-        self.base_for_test.add_links(config)
+        self.base_for_test.add_links(self.config)
+
+    @mock.patch('shellper.base.Base._init_service',
+                return_value=base_test.FakeClass())
+    @mock.patch('shellper.base.Base.create_mail', return_value=None)
+    def test_send_mail(self, mock_createmail, mock_init):
+        self.base_for_test.send_mail(self.config, 'test@mail.com')
+
+    @mock.patch('shellper.base.Base.add_links', return_value=None)
+    def test_create_mail(self, mock_addlinks):
+        self.base_for_test.create_mail(self.config, 'test@mail.com')

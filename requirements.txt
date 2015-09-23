@@ -10,3 +10,4 @@ PyYAML >= 3.10
 pygoogle-simple >= 0.2.3
 google-api-python-client >= 1.4.0
 rfc3339>=0.0.dev0
+oslo.config>=2.3.0

@@ -1,9 +1,12 @@
+import os
 import sys
 
 import argparse
 import yaml
+from oslo_config import cfg
 
 import shellper.base as base
+from shellper import config
 import shellper.validation as validation
 
 
@@ -22,23 +25,38 @@ def open_file(argument):
         return yaml.load(yaml_file)
 
 
+def setup_common():
+    dev_conf = os.path.join('etc',
+                            'shellper',
+                            'shellper.conf')
+    config_files = None
+    if os.path.exists(dev_conf):
+        config_files = [dev_conf]
+
+    config.parse_configs(config_files)
+
+
 def main():
     argument = parsing_args()
-    config = open_file(argument)
-    validation.validate(config)
+    request = open_file(argument)
+    validation.validate(request)
     del sys.argv[-1]
+    setup_common()
 
     google = base.Base()
 
-    event_list = google.get_event_list()
-    if event_list:
-        for event in event_list:
-            print event
-    else:
-        print 'No upcomings events found'
-
-    for event in config:
-        google.create_event(event)
+    remind_method = cfg.CONF.remind_method
+    to = cfg.CONF.account
+    if remind_method == 'mail':
+        for event in request:
+            google.send_mail(event, to)
+    elif remind_method == 'calendar':
+        for event in request:
+            google.create_event(event)
+    elif not remind_method:
+        for event in request:
+            google.create_event(event)
+            google.send_mail(event, to)
 
 if __name__ == "__main__":
     main()
