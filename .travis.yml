@@ -1,7 +1,6 @@
 language: python
 
 cache:
-    apt
     pip
 python:
   - 2.7
@@ -9,7 +8,6 @@ python:
 env:
     - pep8-unit
 before_install:
-  - sudo apt-get install python-pip
   - pip install coveralls
 
 matrix:
