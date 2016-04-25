@@ -26,6 +26,7 @@ SCHEMA = {
 }
 
 
+# Initial validator
 class Validator(jsonschema.Draft4Validator):
     def __init__(self, schema):
         format_checker = jsonschema.FormatChecker()
@@ -33,5 +34,6 @@ class Validator(jsonschema.Draft4Validator):
             schema, format_checker=format_checker)
 
 
+# Validation of input template
 def validate(config):
     return Validator(SCHEMA).validate(config)

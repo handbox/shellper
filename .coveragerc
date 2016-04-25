@@ -1,0 +1,6 @@
+[run]
+omit = shellper/tests/unit*
+
+[report]
+exclude_lines =
+    if __name__ == .__main__.:
